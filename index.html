@@ -162,13 +162,7 @@ body {background: #fede57;margin:0;padding:0;} .credits {position:absolute;botto
 				
 			world.SetContactListener(listener);
 
-			 window.onkeydown = function(e) {
-			 if (e.keyCode == KeyCodes.UP)
-				{
-					jump();
-				}
-			 };
-			 window.onmousedown = function(e) {
+			 window.onkeydown = window.onmousedown = function(e) {
 					jump();
 			 };
 		  };
@@ -425,7 +419,6 @@ body {background: #fede57;margin:0;padding:0;} .credits {position:absolute;botto
 
    </head>
    <body>
-      <!--<canvas id="canvas" width="1500" height="400"></canvas><br />-->
 	  <div><canvas id="game" width="900" height="400"></canvas></div>
 	  <div class="credits"><div style="float: left; padding-right: 25px;"><script type="text/javascript"><!--
 	  document.write(VK.Share.button(false,{type: "round", text: "Двачую"}));
