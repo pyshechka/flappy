@@ -49,9 +49,9 @@ body {background: #fede57;margin:0;padding:0;} .credits {position:absolute;botto
 		  CanvasState.LOSE_MENU = 2;
 		  
 		  CanvasState.states = [
-			{init: function(){}, update: function(){}, draw: drawMainMenu, stop: function(){}},
-			{init: init, update: update, draw: drawGame, stop: deleteGameData},
-			{init: function(){}, update: function(){}, draw: drawLoseMenu, stop: function(){}}
+			/*mainMenu*/ {init: setUpReadyForStart, update: function(){}, draw: drawMainMenu, stop: function(){}},
+			/*game*/     {init: init, update: update, draw: drawGame, stop: deleteGameData},
+			/*loseMenu*/ {init: setUpReadyForStart, update: function(){}, draw: drawLoseMenu, stop: function(){}}
 		  ];
 		  state.state = CanvasState.MAIN_MENU;
 		  
@@ -163,7 +163,7 @@ body {background: #fede57;margin:0;padding:0;} .credits {position:absolute;botto
 				
 			world.SetContactListener(listener);
 
-			 window.onkeydown = window.onmousedown = function(e) {
+			 document.body.onkeydown = canvas.onmousedown = function(e) {
 					jump();
 			 };
 		  };
@@ -279,10 +279,6 @@ body {background: #fede57;margin:0;padding:0;} .credits {position:absolute;botto
 			ctx.fillText("REKORD: " + highscore, canvas.width / 2, 315);
 			
 			ctx.fillText("NAZHMITE CTOBY NACHAT ZANOVO", canvas.width / 2, 370);
-			
-			window.onkeydown = window.onmousedown = function(e) {
-				state.setState(CanvasState.GAME);
-			 };
 		  }
 		  function drawMainMenu()
 		  {	  
@@ -313,8 +309,11 @@ body {background: #fede57;margin:0;padding:0;} .credits {position:absolute;botto
 			ctx.textAlign = "center";
 			
 			ctx.fillText("NAZHMITE CTOBY NACHAT IGRAT", canvas.width / 2, 370);
-			
-			window.onkeydown = window.onmousedown = function(e) {
+		  }
+		  
+		  function setUpReadyForStart()
+		  {
+			document.body.onkeydown = canvas.onmousedown = function(e) {
 				state.setState(CanvasState.GAME);
 			 };
 		  }
@@ -423,7 +422,7 @@ body {background: #fede57;margin:0;padding:0;} .credits {position:absolute;botto
 	  <div><canvas id="game" width="900" height="400"></canvas></div>
 	  <div class="credits"><div style="float: left; padding-right: 25px;"><script type="text/javascript"><!--
 	  document.write(VK.Share.button(false,{type: "round", text: "Двачую"}));
-	  --></script></div> &copy; 2014, анон <a href="http://vk.com/ehidnaya_pyshechka">Олег Дементьев</a> и <a href="http://2ch.hk/b/">Народное ополчение Двача</a>.</span>
+	  --></script></div> <a href="https://github.com/pyshechka/flappy/tree/gh-pages">Github</a> | &copy; 2014, анон <a href="http://vk.com/ehidnaya_pyshechka">Олег Дементьев</a> и <a href="http://2ch.hk/b/">Народное ополчение Двача</a>.</span>
 	  <img src="logo.png" id="logo" style="display: none" />
 	  <img src="peka.png" id="peka" style="display: none" />
 	  <img src="peka_butthurt.png" id="peka-butthurt" style="display: none" />
